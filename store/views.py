@@ -1,6 +1,7 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
+from django.views.generic import ListView
 
 from . forms import SupplierForm
 from . models import Supplier,User
@@ -28,6 +29,12 @@ def create_supplier(request):
                                             is_supplier=True)
 
                 Supplier.objects.create(user=user,name=name,address=address)   
-                return HttpResponse('<h2>supplier created</h2>')      
-                                          
+                return redirect('supplier-list')      
+
     return render(request,'store/create_supplier.html',{'form':forms})
+
+
+class SupplierList(ListView):
+    model = Supplier
+    template_name = 'store/supplier_list.html'
+    context_object_name = 'supplier'
