@@ -9,4 +9,8 @@ urlpatterns = [
 
     path('create-buyer/',views.create_buyer,name='buyer-buyer'),
     path('buyer-list/',views.BuyerList.as_view(),name='buyer-list'),
+
+
+    path('create-product/',views.create_product,name='create-product'),
+    path('product-list/',views.ProductList.as_view(),name='product-list'),
 ]

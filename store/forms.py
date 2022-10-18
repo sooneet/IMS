@@ -1,5 +1,7 @@
 from django import forms
 
+from store.models import Product
+
 
 class SupplierForm(forms.Form):
     name = forms.CharField(widget=forms.TextInput(attrs={
@@ -39,6 +41,7 @@ class SupplierForm(forms.Form):
         'data-val-required':'please enter retype_password',
         }))                               
 
+
 class BuyerForm(forms.Form):
     name = forms.CharField(widget=forms.TextInput(attrs={
         'class':'form-control',
@@ -77,3 +80,17 @@ class BuyerForm(forms.Form):
         'data-val-required':'please enter retype_password',
     }))
 
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['name','sortno']
+        widgets = {
+            'name':forms.TextInput(attrs={
+                'class':'form-control',
+                'id':'name',
+            }),
+            'sortno':forms.TextInput(attrs={
+                'class':'form-control',
+                'id':'sortno',
+            }),            
+        }

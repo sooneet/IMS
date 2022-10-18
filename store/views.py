@@ -4,10 +4,29 @@ from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
 
-from . forms import SupplierForm,BuyerForm
-from . models import Supplier,Buyer,User
+from . forms import ProductForm, SupplierForm,BuyerForm
+from . models import Product, Supplier,Buyer,User
 
 # Create your views here.
+class ProductList(ListView):
+    model = Product
+    template_name = 'store/product_list.html'
+    context_object_name = 'product'
+
+
+
+@login_required(login_url='login')
+def create_product(request):
+    forms = ProductForm()
+
+    if request.method == 'POST':
+        forms = ProductForm(request.POST)
+        if forms.is_valid():
+            forms.save()
+            return redirect('product-list')
+
+    return render(request,'store/create_product.html',{'form':forms})
+
 class BuyerList(ListView):
     model = Buyer
     template_name = 'store/buyer_list.html'
