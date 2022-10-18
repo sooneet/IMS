@@ -15,7 +15,7 @@ def login_page(request):
             user = authenticate(username=username,password=password)
             if user:
                 login(request,user)
-                return HttpResponse('<h2>login</h2>')
+                return redirect('dashboard')
     return render(request,'users/login.html',{'form':forms})
 
 

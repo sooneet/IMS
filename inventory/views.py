@@ -10,4 +10,5 @@ def dashboard(request):
     total_order = Order.objects.all().count
     total_product = Product.objects.all().count
     orders = Order.objects.all().order_by('-id')
+    
     return render(request,'dashboard.html')

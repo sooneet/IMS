@@ -5,4 +5,8 @@ from . import views
 urlpatterns = [
     path('create-supplier/',views.create_supplier,name='create-supplier'),
     path('supplier-list/',views.SupplierList.as_view(),name='supplier-list'),
+
+
+    path('create-buyer/',views.create_buyer,name='buyer-buyer'),
+    path('buyer-list/',views.BuyerList.as_view(),name='buyer-list'),
 ]
