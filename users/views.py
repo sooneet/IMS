@@ -17,3 +17,8 @@ def login_page(request):
                 login(request,user)
                 return HttpResponse('<h2>login</h2>')
     return render(request,'users/login.html',{'form':forms})
+
+
+def logout_page(request):
+    logout(request)
+    return redirect('login')
