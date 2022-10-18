@@ -1,6 +1,6 @@
 from django import forms
 
-from store.models import Product
+from store.models import Delivery, Product,Order
 
 
 class SupplierForm(forms.Form):
@@ -40,7 +40,6 @@ class SupplierForm(forms.Form):
         'data-val':'true',
         'data-val-required':'please enter retype_password',
         }))                               
-
 
 class BuyerForm(forms.Form):
     name = forms.CharField(widget=forms.TextInput(attrs={
@@ -94,3 +93,22 @@ class ProductForm(forms.ModelForm):
                 'id':'sortno',
             }),            
         }
+
+class OrderForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ['supplier', 'product',  'buyer' ]
+
+        widgets = {
+            'supplier': forms.Select(attrs={
+                'class': 'form-control', 'id': 'supplier'
+            }),
+            'product': forms.Select(attrs={
+                'class': 'form-control', 'id': 'product'
+            }),
+            'buyer': forms.Select(attrs={
+                'class': 'form-control', 'id': 'buyer'
+            }),
+        }
+
+     
